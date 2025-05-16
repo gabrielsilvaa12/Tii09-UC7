@@ -22,14 +22,3 @@ class Contato {
         $this->nome = $nome;
     }
 }
-
-$cont1 = new Contato(1, "Oruam");
-print_r($cont1);
-
-print_r($cont1);
-echo "<br>";
-echo $cont1->getNome();
-echo "<br>";
-$cont1->setNome("Beltrano");
-echo $cont1->getNome();
-echo "<br>";
