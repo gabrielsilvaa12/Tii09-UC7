@@ -46,8 +46,8 @@ class Cliente {
     public function setAtivo(bool $ativo): void {
         $this->ativo = $ativo;
     }
-
     public function setDataNascimento(string $dataNascimento): void {
-        $this->setDataNascimento($dataNascimento);
+        $this->setDataNascimento($dataNascimento); // <- chama ele mesmo, pra sempre (loop infinito)
     }
+    
 }

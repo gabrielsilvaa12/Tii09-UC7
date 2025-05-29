@@ -52,7 +52,7 @@ $clientes = $cliDAO->getAll();
         </tr>
         <?php foreach($clientes as $cli): ?>
         <tr>
-            <td><?= $cli->getName() ?></td>
+        <td><?= $cli->getNome(); ?></td>
             <td><?= $cli->getCpf() ?></td>
             <td>
                 <a href="./frontend/cliente_details.php?id=<?= $cli->getId() ?>">Detalhes</a>

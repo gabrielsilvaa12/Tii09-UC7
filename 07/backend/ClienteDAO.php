@@ -44,7 +44,7 @@ public function getById(int $id): ?Cliente{
     return null;
 }
 
-public function create(Cliente $cliente): void{
+public function create(Cliente $cliente): void {
     $stmt = $this->db->prepare('INSERT INTO clientes (nome, cpf, ativo, dataNascimento) VALUES (:nome, :cpf, :ativo, :dataNascimento)');
     $stmt->execute([
         'nome'=> $cliente->getNome(),
