@@ -33,4 +33,6 @@ class Cliente implements JsonSerializable
             'ativo' => $this->ativo,
         ];
     }
+
+    
 }
