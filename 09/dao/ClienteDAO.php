@@ -1,89 +1,71 @@
 <?php
-header('Content-Type: application/json');
-
-
-require_once __DIR__ . '/../dao/ClienteDAO.php';
 require_once __DIR__ . '/../model/Cliente.php';
-
-$dao = new ClienteDAO();
-$action = $_GET['action'] ?? null;
-$id = isset($_GET['id']) ? $_GET['id'] : null;
-$inputBody = json_decode(file_get_contents('php://input'), true);
-
-switch ($action) {
-    case 'listar': // GET
-        echo json_encode($dao->getAll());
-        break;
-
-    case 'buscar': // GET
-        if ($id) {
-            $cliente = $dao->getById($id);
-            if ($cliente)
-                echo json_encode($cliente);
-            else {
-                http_response_code(404);
-                echo json_encode(["error" => "Cliente não encontrado!"]);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(["error" => "Você não informou o ID"]);
+require_once __DIR__ . '/../Database.php';
+ 
+class ClienteDAO
+{
+    private PDO $db;
+    public function __construct() {
+        $this->db = Database::getInstance();
+    }
+ 
+    public function getAll(): array {
+        $stmt = $this->db->query("SELECT * FROM clientes");
+        $clientesData = $stmt->fetchAll(); // setando o fetchAll para não ter que declarar diversas vezes depois, ou na linha acima
+        $clientes = [];
+        foreach($clientesData as $data) {
+            $clientes[] = new Cliente($data['id'], $data['nome'], $data['cpf'], $data['dataNascimento'], $data['ativo']);
         }
-        break;
-
-    case 'cadastrar': // POST
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $inputBody) {
-            $cli = new Cliente(null, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo']);
-            if($dao->create($cli))
-            {
-                http_response_code(201);
-                echo json_encode(['success' => 'Cliente cadastrado']);
-            }
-            else 
-            {
-                http_response_code(500);
-                echo json_encode(['error' => 'Cliente não cadastrado!']);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'Método incorreto']);
+       
+        return $clientes;
+    }
+ 
+    public function getById(int $id): ?Cliente {
+        $stmt = $this->db->prepare("SELECT * FROM clientes WHERE id = :id");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT); // com PDO::PARAM_INT afirmo que o ID vai ser sempre INT, não aceito nada diferente
+        $stmt->execute();
+        $data = $stmt->fetch();
+        if($data) {
+            return new Cliente($data['id'], $data['nome'], $data['cpf'], $data['dataNascimento'], $data['ativo']);
         }
-        break;
-
-    case 'atualizar': // PUT
-        if ($_SERVER['REQUEST_METHOD'] == 'PUT' && $inputBody && $id) {
-            $cli = new Cliente($id, $inputBody['nome'], $inputBody['cpf'], $inputBody['dataDeNascimento'], $inputBody['ativo']);
-            if($dao->update($cli))
-            {
-                http_response_code(204);
-                echo json_encode(['success' => 'Cliente atualizado']);
-            }
-            else 
-            {
-                http_response_code(500);
-                echo json_encode(['error' => 'Cliente não atualizado!']);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'ID não fornecido, ou método incorreto']);
-        }
-        break;
-
-    case 'excluir': // DELETE
-        if ($id && $_SERVER['REQUEST_METHOD'] == 'DELETE') {
-            if ($dao->delete($id)) {
-                echo json_encode(['message' => 'Cliente excluído!']);
-            } else {
-                http_response_code(500);
-                echo json_encode(['error' => 'Erro ao excluir!']);
-            }
-        } else {
-            http_response_code(400);
-            echo json_encode(['error' => 'ID não fornecido ou método incorreto']);
-        }
-        break;
-
-    default:
-        http_response_code(400);
-        echo json_encode(['error' => 'Ação inválida, informar action']);
-        break;
+       
+        return null;
+    }
+ 
+    public function create(Cliente $cliente): bool { // bool permite mostrar ao usuário se o cliente foi criado ou não
+        $sql = "INSERT INTO clientes (nome, cpf, dataNascimento, ativo) VALUES (:nome, :cpf, :dataNascimento, :ativo)";
+        $stmt = $this->db->prepare($sql);
+       
+        return $stmt->execute(
+            [
+                ':nome' => $cliente->getNome(),
+                ':cpf' => $cliente->getCpf(),
+                ':dataNascimento' => $cliente->getDataNascimento(),
+                ':ativo' => $cliente->getAtivo() ? 1 : 0
+            ]
+        );
+    }
+ 
+    public function update(Cliente $cliente): bool {
+        $sql = "UPDATE clientes SET nome = :nome, cpf = :cpf, dataNascimento = :dataNascimento, ativo = :ativo WHERE id = :id";
+        $stmt = $this->db->prepare($sql);
+       
+        return $stmt->execute(
+            [
+                ':id' => $cliente->getId(),
+                ':nome' => $cliente->getNome(),
+                ':cpf' => $cliente->getCpf(),
+                ':dataNascimento' => $cliente->getDataNascimento(),
+                ':ativo' => $cliente->getAtivo() ? 1 : 0
+            ]
+        );
+    }
+ 
+    public function delete(int $id): bool {
+        $stmt = $this->db->prepare("DELETE FROM clientes WHERE id = :id");
+        $stmt->bindParam(':id', $id);
+        return $stmt->execute();
+    }
 }
+?>
+ 
