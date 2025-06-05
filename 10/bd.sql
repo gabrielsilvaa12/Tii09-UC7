@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    email varchar(100) UNIQUE NOT NULL,
+    token varchar(255) DEFAULT NULL
+);
