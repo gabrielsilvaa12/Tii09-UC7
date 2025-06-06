@@ -4,7 +4,7 @@ class Database {
     public static function getInstance()
     {
         $db_dbhost = "localhost";
-        $db_name = "usuario";
+        $db_name = "usuarios";
         $db_user = "root";
         $db_pass = "";
 
