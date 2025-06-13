@@ -1,0 +1,32 @@
+<?php
+
+class Produto {
+    private ?int $id;
+    private string $nome;
+    private float $preco;
+    private bool $ativo;
+    private string $dataDeCdastro;
+    private ?string $dataDeValidade;
+
+    public function __construct(?int $id, string $nome, float $preco, bool $ativo, string $dataDeCdastro, ?string $dataDeValidade) {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->preco = $preco;
+        $this->ativo = $ativo;
+        $this->dataDeCdastro = $dataDeCdastro;
+        $this->dataDeValidade = $dataDeValidade;
+    }
+
+    public function getId(): ?int {return $this->id;}
+    public function getNome(): string {return $this->nome;}
+    public function getPreco(): float {return $this->preco;}
+    public function getativo(): bool {return $this->ativo;}
+    public function getDataDeCdastro(): string {return $this->dataDeCdastro;}
+    public function getDataDeValidade(): string {return $this->dataDeValidade;}
+
+    public function setNome(string $nome) { $this->nome = $nome; }
+    public function setPreco(float $preco) { $this->preco = $preco; }
+    public function setAtivo(bool $ativo) { $this->ativo = $ativo; }
+    public function setDataDeCadastro(string $cadastro) { $this->dataDeCadastro = $cadastro; }
+    public function setDataDeValidade(?string $validade) { $this->dataDeValidade = $validade; }
+}
