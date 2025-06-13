@@ -21,7 +21,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $erro = "Já existe usuário com esse email";
         }
-        else
         {
             $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
             $token = bin2hex(random_bytes(25));            
@@ -38,7 +37,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
             }
         }
     }
-}
+}    else
+    
 
 ?>
 
