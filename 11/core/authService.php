@@ -10,7 +10,7 @@ function checkLogin(bool $returnUser = false): ?usuario {
         exit();
     }
 
-    $usuarioDao = new usuarioDAO();
+    $usuarioDao = new UsuarioDAO();
     $usuario = $usuarioDao->getByToken($_SESSION['token']);
 
     if (!$usuario) {
@@ -28,7 +28,7 @@ function checkLogin(bool $returnUser = false): ?usuario {
 
 function logout(): void {
     if (isset($_SESSION['token'])) {
-        $usuarioDao = new usuarioDAO();
+        $usuarioDao = new UsuarioDAO();
         $usuario = $usuarioDao->getByToken($_SESSION['token']);
         if ($usuario) {
             $usuarioDao->updateToken($usuario->getId(), null);
@@ -47,7 +47,7 @@ function login(): ?usuario {
         return null;
     }
 
-    $usuarioDao = new usuarioDAO();
+    $usuarioDao = new UsuarioDAO();
     $usuario = $usuarioDao->getByToken($_SESSION['token']);
 
     if (!$usuario) {

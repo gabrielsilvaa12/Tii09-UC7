@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../model/Produto.php';
 require_once __DIR__ . '/../core/Database.php';
 
-class UusarioDAO {
+class UsuarioDAO {
     private $db;
 
     public function __construct() {

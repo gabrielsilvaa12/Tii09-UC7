@@ -5,15 +5,15 @@ class Produto {
     private string $nome;
     private float $preco;
     private bool $ativo;
-    private string $dataDeCdastro;
+    private string $dataDeCadastro;
     private ?string $dataDeValidade;
 
-    public function __construct(?int $id, string $nome, float $preco, bool $ativo, string $dataDeCdastro, ?string $dataDeValidade) {
+    public function __construct(?int $id, string $nome, float $preco, bool $ativo, string $dataDeCadastro, ?string $dataDeValidade) {
         $this->id = $id;
         $this->nome = $nome;
         $this->preco = $preco;
         $this->ativo = $ativo;
-        $this->dataDeCdastro = $dataDeCdastro;
+        $this->dataDeCadastro = $dataDeCadastro;
         $this->dataDeValidade = $dataDeValidade;
     }
 
@@ -21,7 +21,7 @@ class Produto {
     public function getNome(): string {return $this->nome;}
     public function getPreco(): float {return $this->preco;}
     public function getativo(): bool {return $this->ativo;}
-    public function getDataDeCdastro(): string {return $this->dataDeCdastro;}
+    public function getDataDeCadastro(): string {return $this->dataDeCadastro;}
     public function getDataDeValidade(): string {return $this->dataDeValidade;}
 
     public function setNome(string $nome) { $this->nome = $nome; }
