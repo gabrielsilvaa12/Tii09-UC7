@@ -31,13 +31,7 @@ if (!$produto) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $produto ? htmlspecialchars($produto->getNome()) : 'Detalhes do Produto'; ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .product-detail { border: 1px solid #ccc; padding: 15px; border-radius: 5px; max-width: 600px; margin: 20px auto; }
-        .product-detail p { margin: 5px 0; }
-        .error-message { color: red; font-weight: bold; }
-        nav a { margin-right: 15px; }
-    </style>
+    <link rel="stylesheet" href="../css/style.css">  </head>
 </head>
 <body>
 
@@ -47,7 +41,6 @@ if (!$produto) {
         <a href="../index.php">Home</a>
         <a href="listar.php">Voltar para a Lista</a>
         <?php if ($isLogged): ?>
-            <a href="../usuario.php">Minha Conta</a>
             <a href="criar.php">Novo Produto</a>
             <a href="../logout.php">Sair</a>
         <?php else: ?>

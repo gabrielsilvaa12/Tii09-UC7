@@ -1,0 +1,206 @@
+/* style.css */
+
+/* --- Estilos Gerais --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center; /* CENTRALIZA h1 e h2 */
+}
+
+p {
+    text-align: center; /* CENTRALIZA TODOS OS PARÁGRAFOS */
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+/* --- Estilos de Navegação --- */
+nav {
+    margin-bottom: 20px;
+    text-align: center; /* CENTRALIZA LINKS DA NAVEGAÇÃO */
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    display: inline-block; /* Garante que margins funcionem bem */
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* --- Estilos de Mensagens (Sucesso/Erro) --- */
+.message-success {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+    text-align: center; /* Centraliza a mensagem de sucesso */
+}
+
+.message-error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    text-align: center; /* Centraliza a mensagem de erro */
+}
+
+/* --- Estilos de Formulário --- */
+form {
+    max-width: 500px;
+    margin: 20px auto; /* Centraliza o formulário */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+    text-align: left; /* Mantém labels alinhados à esquerda dentro do form */
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 12px); /* Ajusta para padding */
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o width */
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+    transform: scale(1.2); /* Aumenta um pouco o checkbox */
+}
+
+button[type="submit"] {
+    background-color: #28a745; /* Cor para cadastrar */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Transição suave no hover */
+    display: block; /* Ocupa a largura total para centralizar com margin: auto */
+    margin: 15px auto 0; /* Centraliza o botão */
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Estilos específicos para o botão de atualização (editar.php) */
+form button[type="submit"].update-button {
+    background-color: #007bff;
+}
+
+form button[type="submit"].update-button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Estilos de Tabela --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto; /* CENTRALIZA A TABELA */
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #e9ecef;
+    color: #495057;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e2e6ea;
+}
+
+/* Centraliza o conteúdo da coluna de ações na tabela */
+td:last-child {
+    text-align: center;
+}
+
+/* --- Estilos para Detalhes do Produto (ver.php) --- */
+.product-detail {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 600px;
+    margin: 20px auto; /* Centraliza a caixa de detalhes */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: left; /* Mantém o texto dentro do detalhe alinhado à esquerda */
+}
+
+.product-detail p {
+    margin: 8px 0;
+    font-size: 1.1em;
+    text-align: left; /* Garante que os parágrafos dentro do product-detail não sejam centralizados */
+}
+
+.product-detail strong {
+    color: #555;
+    min-width: 150px; /* Garante alinhamento para labels */
+    display: inline-block;
+}
+
+/* --- Estilos para a Seção de Produtos no Index (Nossos Produtos) --- */
+section {
+    text-align: center; /* CENTRALIZA o conteúdo da seção (h2 e ul) */
+}
+
+section ul {
+    list-style-position: inside; /* Mantém os marcadores da lista dentro do conteúdo centralizado */
+    padding-left: 0; /* Remove o padding padrão da lista */
+    display: inline-block; /* Faz o UL se comportar como bloco mas ser centralizável por text-align de pai */
+    text-align: left; /* Alinha o texto dos LIs à esquerda dentro do UL, se preferir */
+}
+
+section ul li {
+    margin-bottom: 5px;
+}
