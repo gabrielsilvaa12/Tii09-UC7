@@ -12,7 +12,7 @@ $isLogged = ($usuarioLogado !== null);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css">  </head>
 
-<h1>Sera que roda?!</h1>
+<h1>Vai rodar?!</h1>
 
     <nav>
         <a href="index.php">Home</a>
