@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../dao/ProdutoDAO.php';
+require_once __DIR__ . '/../core/authService.php';
 $dao = new ProdutoDAO();
 $produtos = $dao->getAll();
 
@@ -15,7 +16,7 @@ $user = getLoggedUser();
         <small>Fornecedor: <?= $p->getFornecedor() ? $p->getFornecedor()->getNome() : 'Não tem' ?></small>
 
         <?php if($user): ?>
-            <a href="./editar.php?id=<?= $p->getId() ?>"></a>Editar</a>
+            <a href="./editar.php?id=<?= $p->getId() ?>">Editar</a>
             <a href="./excluir.php?id=<?= $p->getId() ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
         <?php endif; ?>
 
