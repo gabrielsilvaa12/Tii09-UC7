@@ -45,7 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <?php
             $selected = ($produto->getFornecedor() && $produto->getFornecedor()->getId() == $f->getId()) ? 'selected' : '';
             ?>
-            <option value="<?= $f->getId() ?>" <?= $selected ?>><?= $f->getNome() ?></option>
+            <option value="<?= $f->getId() ?>" <?= $selected ?>>
+                <?= $f->getNome() ?>
+            </option>
         <?php endforeach; ?>
     </select>
     <br>

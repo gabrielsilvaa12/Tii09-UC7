@@ -7,6 +7,11 @@ $produtos = $dao->getAll();
 $user = getLoggedUser();
 ?>
 <h1>Produtos</h1>
+
+<?php if($user): ?>
+    <h4><a href="./criar.php">Cadastrar</a></h4>
+<?php endif; ?>
+
 <?php foreach ($produtos as $p): ?>
     <p>
         <a href="ver.php?id=<?= $p->getId() ?>">
@@ -16,11 +21,9 @@ $user = getLoggedUser();
         <small>Fornecedor: <?= $p->getFornecedor() ? $p->getFornecedor()->getNome() : 'Não tem' ?></small>
 
         <?php if($user): ?>
-            <a href="./editar.php?id=<?= $p->getId() ?>">Editar</a>
-            <a href="./excluir.php?id=<?= $p->getId() ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
+            | <a href="./editar.php?id=<?= $p->getId() ?>">Editar</a>
+            | <a href="./excluir.php?id=<?= $p->getId() ?>" onclick="return confirm('Tem certeza?')">Excluir</a>
         <?php endif; ?>
-
-        
     </p>
 
 <?php endforeach; ?>
